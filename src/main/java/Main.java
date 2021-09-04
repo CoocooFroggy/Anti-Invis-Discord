@@ -1,5 +1,7 @@
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.OnlineStatus;
+import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -30,7 +32,10 @@ public class Main {
                 .enableIntents(GatewayIntent.GUILD_MEMBERS)
                 .setMemberCachePolicy(MemberCachePolicy.ALL)
                 .enableCache(CacheFlag.ONLINE_STATUS);
-//        jdaBuilder.setActivity(Activity.playing("a game"));
+
+        jdaBuilder.setActivity(Activity.watching("for invisible users"));
+        jdaBuilder.setStatus(OnlineStatus.DO_NOT_DISTURB);
+
         try {
             jda = jdaBuilder.build();
         } catch (Exception e) {
