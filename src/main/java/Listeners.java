@@ -83,7 +83,7 @@ public class Listeners extends ListenerAdapter {
                 }
 
                 StringBuilder finalMessage = new StringBuilder();
-                finalMessage.append("Finished blacklisting all channels for ").append(invisRole.getAsMention()).append(".");
+                finalMessage.append("Finished blacklisting all channels for ").append(invisRole.getAsMention()).append(".\n");
 
                 if (!failedChannels.isEmpty()) {
                     finalMessage.append("Failed to set permissions for the following channels:\n");
