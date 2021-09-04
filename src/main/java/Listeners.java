@@ -112,7 +112,24 @@ public class Listeners extends ListenerAdapter {
 
                 Guild guild = event.getGuild();
                 Role invisRole = InvisUtils.getInvisRole(guild);
-                channel.getManager().removePermissionOverride(invisRole).complete();
+
+                try {
+                    if (channel instanceof TextChannel) {
+                        TextChannel textChannel = (TextChannel) channel;
+                        // Make them not visible to invis role
+                        textChannel.getManager().putPermissionOverride(invisRole, Collections.singleton(Permission.VIEW_CHANNEL), null).complete();
+                    } else if (channel instanceof Category) {
+                        Category category = (Category) channel;
+                        category.getManager().putPermissionOverride(invisRole, Collections.singleton(Permission.VIEW_CHANNEL), null).complete();
+                    } else if (channel instanceof VoiceChannel) {
+                        VoiceChannel voiceChannel = (VoiceChannel) channel;
+                        voiceChannel.getManager().putPermissionOverride(invisRole, Collections.singleton(Permission.VIEW_CHANNEL), null).complete();
+                    }
+                } catch (RuntimeException exception) {
+                    hook.editOriginal("Failed to set permission overrides for " + channel.getAsMention() + ".").queue();
+                    return;
+                }
+
                 hook.editOriginal("Added " + channel.getName() + " to whitelist.").queue();
                 break;
             }
