@@ -88,7 +88,11 @@ public class Listeners extends ListenerAdapter {
                 if (!failedChannels.isEmpty()) {
                     finalMessage.append("Failed to set permissions for the following channels:\n");
                     for (GuildChannel channel : failedChannels) {
-                        finalMessage.append(channel.getAsMention()).append("\n");
+                        if (channel instanceof Category) {
+                            finalMessage.append(channel.getName()).append(" (Category)").append("\n");
+                        } else {
+                            finalMessage.append(channel.getAsMention()).append("\n");
+                        }
                     }
                 }
 
