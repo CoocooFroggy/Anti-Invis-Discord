@@ -43,11 +43,10 @@ public class Main {
     }
 
     public static void registerSlashCommands() {
-        //DEBUG
-        Guild testGuild = jda.getGuildById("685606700929384489");
-        assert testGuild != null;
-        testGuild.upsertCommand("blockallchannels", "Blocks all channels from invisible users.").complete();
-        testGuild.upsertCommand("whitelistchannel", "Make channel visible to invisible users.")
+//        Guild testGuild = jda.getGuildById("685606700929384489");
+//        assert testGuild != null;
+        jda.upsertCommand("blockallchannels", "Blocks all channels from invisible users.").complete();
+        jda.upsertCommand("whitelistchannel", "Make channel visible to invisible users.")
                 .addOption(OptionType.CHANNEL, "channel", "Channel to whitelist", true)
                 .complete();
     }
