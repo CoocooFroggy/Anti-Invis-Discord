@@ -1,3 +1,4 @@
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
@@ -136,6 +137,14 @@ public class Listeners extends ListenerAdapter {
 
                 hook.editOriginal("Added " + channel.getName() + " to whitelist.").queue();
                 break;
+            }
+            case "help": {
+                EmbedBuilder eb = new EmbedBuilder();
+                eb.setFooter(event.getUser().getName(), event.getUser().getAvatarUrl());
+                eb.setTitle("Anti-Invis Bot Help Menu");
+                eb.addField("`/help`", "Opens this menu.", true);
+                eb.addField("`/blockallchannels`", "Blocks all channels from being viewed by invisible users.", true);
+                eb.addField("`/whitelistchannel [channel]`", "Makes a channel viewable for invisible users.", true);
             }
         }
     }
