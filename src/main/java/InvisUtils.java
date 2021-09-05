@@ -48,7 +48,6 @@ public class InvisUtils {
         Role invisRole;
         invisRole = guild.createRole()
                 .setName("Invisible")
-                .setColor(new Color(69, 69, 69))
                 .setPermissions()
                 .complete();
 
